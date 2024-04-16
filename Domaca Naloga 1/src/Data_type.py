@@ -92,34 +92,34 @@ class SimetricnaTridiagonalna:
 class ZgornjaDvodiagonalna:
     """Zgornje dvodiagonalna matrika"""
 
-    def __init__(self, diagonal_matrix):
+    def __init__(self, matrika):
         
-        if len(diagonal_matrix[0]) != len(diagonal_matrix):
+        if len(matrika[0]) != len(matrika):
             raise ValueError("Matrika ni pravokotna.")
         
-        row_num = len(diagonal_matrix)
+        row_num = len(matrika)
 
-        self.diagonal_matrix = diagonal_matrix
+        self.matrika = matrika
         self.glavna_diagonala = np.zeros(row_num)
         self.nad_diagonala = np.zeros(row_num - 1)
         self.druga_nad_diagonala = np.zeros(row_num - 2)
 
 
         for i in range(0,row_num):
-            self.glavna_diagonala[i] = diagonal_matrix[i][i]
+            self.glavna_diagonala[i] = matrika[i][i]
 
         for i in range(0,row_num-1):
-            self.nad_diagonala[i] = diagonal_matrix[i][i+1]
+            self.nad_diagonala[i] = matrika[i][i+1]
         
         for i in range(0,row_num-2):
-            self.druga_nad_diagonala[i] = diagonal_matrix[i][i+2]
+            self.druga_nad_diagonala[i] = matrika[i][i+2]
 
 
     def __str__(self):
         """
         Zapis matrike.
         """ 
-        return str(self.diagonal_matrix)
+        return str(self.matrika)
     
     def __len__(self):
         return self.n
@@ -127,40 +127,40 @@ class ZgornjaDvodiagonalna:
     def __getitem__(self, index):
         if index < 0 or index >= self.n:
             raise IndexError("Index out of range")
-        return self.diagonal_matrix[index]
+        return self.matrika[index]
 
     
     def getindex(self, i, j):
         """
         Dostop do elementa matrike MATRIX[i][j]
         """
-        element = self.diagonal_matrix[i][j]
+        element = self.matrika[i][j]
         return element
 
     def setindex(self, i, j, vrednost):
         """
         Sprememba vrednosti elementa MATRIX[i][j]
         """
-        self.diagonal_matrix[i][j] = vrednost
-        return self.diagonal_matrix
+        self.matrika[i][j] = vrednost
+        return self.matrika
     
     def firstindex(self):
         """
         Prvi element matrike MATRIX[0][0]
         """
-        return self.diagonal_matrix[0][0]
+        return self.matrika[0][0]
     
     def lastindex(self):
         """
         Zadnji element matrike MATRIX[n][n]
         """
-        return self.diagonal_matrix[self.n - 1][self.n - 1]
+        return self.matrika[self.n - 1][self.n - 1]
 
     def multiply(self,matrika_ali_vektor):
         """
         Množenje matrike z matriko/vektorjem
         """
-        mnozenje = np.dot(self.diagonal_matrix,matrika_ali_vektor)
+        mnozenje = np.dot(self.matrika,matrika_ali_vektor)
         return mnozenje
     
 
