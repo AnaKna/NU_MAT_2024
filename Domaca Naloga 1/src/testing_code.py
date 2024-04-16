@@ -2,6 +2,7 @@ import numpy as np
 from QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
 from QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 from Data_type import SimetricnaTridiagonalna
+from Data_type import Givens
 
 np.set_printoptions(precision=5, suppress=True)
 
@@ -38,23 +39,45 @@ C_spodnja_diagonala = [1,1,2,1]
 C = SimetricnaTridiagonalna(C_diagonala, C_zgornja_diagonala, C_spodnja_diagonala)
 
 
-(Q_GS_A, R_GS_A) = Gram_Schmidt_QR_decomposition(A)
-(Q_GS_B, R_GS_B) = Gram_Schmidt_QR_decomposition(B)
+D_zgornja_diagonala = [1,0]
+D_diagonala = [1,1,1]
+D_spodnja_diagonala = [1,0]
 
-(Q_GR_A, R_GR_A) = QR_Decomposition_using_Givens_Rotations(A)
-(Q_GR_B, R_GR_B) = QR_Decomposition_using_Givens_Rotations(B)
+D = SimetricnaTridiagonalna(D_diagonala, D_zgornja_diagonala, D_spodnja_diagonala)
 
+#(Q_GS_A, R_GS_A) = Gram_Schmidt_QR_decomposition(A)
+#(Q_GS_B, R_GS_B) = Gram_Schmidt_QR_decomposition(B)
 
+#(Q_GR_A, R_GR_A) = QR_Decomposition_using_Givens_Rotations(A)
+#(Q_GR_B, R_GR_B) = QR_Decomposition_using_Givens_Rotations(B)
+(Q_GR_D, R_GR_D, givens_data) = QR_Decomposition_using_Givens_Rotations(D)
+print("Matrix Q: \n")
+print(Q_GR_D)
+print("Matrix R: \n")
+print(R_GR_D.diagonal_matrix)
+print("Matrix D: \n")
+print(Q_GR_D@R_GR_D.diagonal_matrix)
+print("GIVENS \n")
+print(givens_data.rotacije)
+print(givens_data.indeksi)
+
+"""
 print("\nGram Schmidt method: matrix A \n")
 print("Matrix Q: \n" +  str(Q_GS_A))
 print("\nMatrix R: \n" +  str(R_GS_A))
 print("\nA = Q * R \n" +  str(Q_GS_A @ R_GS_A))
+
+
 
 print("\nGivens rotation method: matrix A \n")
 print("Matrix Q: \n" +  str(Q_GR_A))
 print("\nMatrix R: \n" +  str(R_GR_A))
 print("\nA = Q * R \n" +  str(Q_GR_A @ R_GR_A))
 
+print("\nGivens rotation method: matrix A \n")
+print("Matrix Q: \n" +  str(Q_GR_A))
+print("\nMatrix R: \n" +  str(R_GR_A))
+print("\nA = Q * R \n" +  str(Q_GR_A @ R_GR_A))
 
 
 print("\nGram Schmidt method: matrix B \n")
@@ -75,3 +98,5 @@ print("\nGivens rotation method: matrix C \n")
 print("Matrix Q: \n" +  str(Q_GR_C))
 print("\nMatrix R: \n" +  str(R_GR_C))
 print("\nA = Q * R \n" +  str(Q_GR_C @ R_GR_C))
+
+"""

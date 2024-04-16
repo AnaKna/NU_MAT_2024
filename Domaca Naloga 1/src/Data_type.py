@@ -89,7 +89,102 @@ class SimetricnaTridiagonalna:
         return mnozenje
 
 
+class ZgornjaDvodiagonalna:
+    """Zgornje dvodiagonalna matrika"""
+
+    def __init__(self, diagonal_matrix):
+        
+        if len(diagonal_matrix[0]) != len(diagonal_matrix):
+            raise ValueError("Matrika ni pravokotna.")
+        
+        row_num = len(diagonal_matrix)
+
+        self.diagonal_matrix = diagonal_matrix
+        self.glavna_diagonala = np.zeros(row_num)
+        self.nad_diagonala = np.zeros(row_num - 1)
+        self.druga_nad_diagonala = np.zeros(row_num - 2)
+
+
+        for i in range(0,row_num):
+            self.glavna_diagonala[i] = diagonal_matrix[i][i]
+
+        for i in range(0,row_num-1):
+            self.nad_diagonala[i] = diagonal_matrix[i][i+1]
+        
+        for i in range(0,row_num-2):
+            self.druga_nad_diagonala[i] = diagonal_matrix[i][i+2]
+
+
+    def __str__(self):
+        """
+        Zapis matrike.
+        """ 
+        return str(self.diagonal_matrix)
+    
+    def __len__(self):
+        return self.n
+    
+    def __getitem__(self, index):
+        if index < 0 or index >= self.n:
+            raise IndexError("Index out of range")
+        return self.diagonal_matrix[index]
+
+    
+    def getindex(self, i, j):
+        """
+        Dostop do elementa matrike MATRIX[i][j]
+        """
+        element = self.diagonal_matrix[i][j]
+        return element
+
+    def setindex(self, i, j, vrednost):
+        """
+        Sprememba vrednosti elementa MATRIX[i][j]
+        """
+        self.diagonal_matrix[i][j] = vrednost
+        return self.diagonal_matrix
+    
+    def firstindex(self):
+        """
+        Prvi element matrike MATRIX[0][0]
+        """
+        return self.diagonal_matrix[0][0]
+    
+    def lastindex(self):
+        """
+        Zadnji element matrike MATRIX[n][n]
+        """
+        return self.diagonal_matrix[self.n - 1][self.n - 1]
+
+    def multiply(self,matrika_ali_vektor):
+        """
+        Množenje matrike z matriko/vektorjem
+        """
+        mnozenje = np.dot(self.diagonal_matrix,matrika_ali_vektor)
+        return mnozenje
+    
 
 
 
+class Givens:
+    """Zgornje dvodiagonalna matrika"""
 
+    def __init__(self, rotacije, indeksi_vrstic):
+        self.rotacije = rotacije
+        self.indeksi = indeksi_vrstic
+
+    def __str__(self):
+        return f"Rotacije: {self.rotacije}\nIndeksi vrstic: {self.indeksi_vrstic}"
+
+
+"""
+
+# Input matrix
+A = [[3, 1, 1, 0], 
+     [0, -1, 2, 1],
+     [0, 0, 1, 1],
+     [0, 0, 0, 1]]
+
+DIAGONALA = ZgornjaDvodiagonalna(A)
+print(DIAGONALA)
+"""

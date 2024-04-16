@@ -1,5 +1,7 @@
 from math import hypot
 import numpy as np
+from Data_type import Givens
+from Data_type import ZgornjaDvodiagonalna
 
 def QR_Decomposition_using_Givens_Rotations(matrix):
 
@@ -10,18 +12,28 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
 
     # Določimo matriko Q kot enotsko matriko -> R = Q * G.T = G.T
     Q = np.identity(num_rows)
+    Q_givens_rotations = []
+    Q_givens_index = []
     # Določimo matriko R kot kopijo osnovne matrike
     R = matrix
 
     # Določimo elemente spodnje trikotne matrike brez diagonale
     (rows, cols) = np.tril_indices(num_rows, -1, num_cols)
+    print("ROWS and COLS")
+    print((rows, cols))
 
     for (row, col) in zip(rows, cols):
         # Givensove rotacije izvedemo samo za ne-ničelne elemnte
         if R[row, col] != 0:
             # (c, s) = Givens_Rotation_Matrix_Entries(R[0, 0], R[1, 0])
             (c, s) = Givens_Rotation(R[col, col], R[row, col])
-
+            rotation = [c, s]
+            index = [row,col]
+            Q_givens_rotations.append(rotation)
+            Q_givens_index.append(index)
+            #print(Q_givens_rotations)
+            #print(Q_givens_index)
+            #print("\n")
             # Ustvarimo enotsko matriko G - matrika givensovih rotacij ima diagonalne elemnte enake 1 ali cos
             G = np.identity(num_rows)
 
@@ -33,15 +45,23 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
             G[row, col] = s
             G[col, row] = -s
 
+            #print("MATRIKA G: \n" )
+            #print(G)
+
             # Matrika Q_T = Gn * ... * G3 * G2 * G1 
             # Matrika Q = Gn_T* ... + G3_T * G2_T * G1_T 
             Q = np.dot(Q, G.T)
+            
+            #print("MATRIKA po množenju")
+            #print(matrix@G)
 
             # Matrika R = Gn * ... * G3 * G2 * G1 * osnovn matrika
             # Matrika R = Q_T * osnovna matrika
             R = np.dot(Q.T, matrix)
 
-    return (Q, R)
+    R = ZgornjaDvodiagonalna(R)
+    Givnes_data = Givens(Q_givens_rotations,Q_givens_index)
+    return (Q, R, Givnes_data)
 
 
 
