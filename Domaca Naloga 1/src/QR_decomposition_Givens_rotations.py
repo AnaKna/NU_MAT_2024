@@ -19,8 +19,8 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
 
     # Določimo elemente spodnje trikotne matrike brez diagonale
     (rows, cols) = np.tril_indices(num_rows, -1, num_cols)
-    print("ROWS and COLS")
-    print((rows, cols))
+    #print("ROWS and COLS")
+    #print((rows, cols))
 
     for (row, col) in zip(rows, cols):
         # Givensove rotacije izvedemo samo za ne-ničelne elemnte
@@ -60,8 +60,8 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
             R = np.dot(Q.T, matrix)
 
     R = ZgornjaDvodiagonalna(R)
-    Givnes_data = Givens(Q_givens_rotations,Q_givens_index)
-    return (Q, R, Givnes_data)
+    Q_givens = Givens(Q_givens_rotations,Q_givens_index)
+    return (Q, R, Q_givens)
 
 
 

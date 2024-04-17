@@ -164,6 +164,22 @@ class ZgornjaDvodiagonalna:
         return mnozenje
     
 
+    def __mul__(self, other):
+        if isinstance(other,int):
+            # Handle multiplication with integers or floats
+            return ZgornjaDvodiagonalna(self.value * other.value)
+        
+        elif isinstance(other, float): 
+            # Handle multiplication with integers or floats
+            return ZgornjaDvodiagonalna(self.value * other.value)
+        
+        elif isinstance(other, ZgornjaDvodiagonalna):
+            # Handle multiplication with another CustomDataType object
+            return ZgornjaDvodiagonalna(self.value * other.value)
+        
+        else:
+            # Raise an exception for unsupported operand types
+            raise TypeError("Multiplication not supported for this operand type")
 
 
 class Givens:

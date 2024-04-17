@@ -3,7 +3,6 @@ from QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
 from QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 from Data_type import SimetricnaTridiagonalna
 from Data_type import Givens
-from Eigenvalue_Eigenvector import Eigenvalue_Eigenvector
 
 np.set_printoptions(precision=5, suppress=True)
 
@@ -62,11 +61,6 @@ print("GIVENS \n")
 print(givens_data.rotacije)
 print(givens_data.indeksi)
 
-(value, vector) = Eigenvalue_Eigenvector(D)
-print("\nEIGEN VALUE:")
-print(value)
-print("\nEIGEN VECTOR:")
-print(vector)
 
 """
 print("\nGram Schmidt method: matrix A \n")
