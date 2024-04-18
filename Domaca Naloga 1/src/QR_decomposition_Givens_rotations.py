@@ -58,31 +58,4 @@ def Givens_Rotation(a, b):
     r = hypot(a, b)
     c = a/r
     s = -b/r
-
     return (c, s)
-
-
-"""
-np.set_printoptions(precision=5, suppress=True)
-
-# Input matrix
-A = [[3, 1, 0, 0], 
-     [1, -1, 2, 0],
-     [0, 2, 1, 1],
-     [0, 0, 1, 1]]
-
-# Print input matrix
-print('The A matrix is equal to:\n',A)
-# Compute QR decomposition using Givens rotation
-(Q, R) = QR_Decomposition_using_Givens_Rotations(A)
-
-# Print orthogonal matrix Q
-print('\n The Q matrix is equal to:\n',Q)
-
-# Print upper triangular matrix R
-print('\n The R matrix is equal to:\n',R)
-
-# Print upper triangular matrix R
-print('\n The Q*R matrix is equal to:\n',Q@R)
-
-"""

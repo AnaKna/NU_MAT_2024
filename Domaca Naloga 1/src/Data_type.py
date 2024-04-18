@@ -192,15 +192,3 @@ class Givens:
     def __str__(self):
         return f"Rotacije: {self.rotacije}\nIndeksi vrstic: {self.indeksi}"
 
-
-"""
-
-# Input matrix
-A = [[3, 1, 1, 0], 
-     [0, -1, 2, 1],
-     [0, 0, 1, 1],
-     [0, 0, 0, 1]]
-
-DIAGONALA = ZgornjaDvodiagonalna(A)
-print(DIAGONALA)
-"""
