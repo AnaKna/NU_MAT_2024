@@ -190,7 +190,7 @@ class Givens:
         self.indeksi = indeksi_vrstic
 
     def __str__(self):
-        return f"Rotacije: {self.rotacije}\nIndeksi vrstic: {self.indeksi_vrstic}"
+        return f"Rotacije: {self.rotacije}\nIndeksi vrstic: {self.indeksi}"
 
 
 """
