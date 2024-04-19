@@ -11,3 +11,7 @@ def random_symmetric_tridiagonal(n):
     matrix = np.diag(main_diag) + np.diag(off_diag, k=1) + np.diag(off_diag, k=-1)
     
     return matrix
+
+
+def random_matrix(N):
+    return np.random.rand(N, N)
