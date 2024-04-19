@@ -1,5 +1,5 @@
-from Random_Matrix import random_symmetric_tridiagonal
-from Random_Matrix import random_matrix
+from src.Random_Matrix import random_symmetric_tridiagonal
+from src.Random_Matrix import random_matrix
 import numpy as np
 import pandas as pd
 import time

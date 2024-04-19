@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 import time
-from QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
-from QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
+from src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
+from src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 import matplotlib.pyplot as plt
-from Random_Matrix import random_symmetric_tridiagonal
+from src.Random_Matrix import random_symmetric_tridiagonal
 
 
 np.set_printoptions(precision=5, suppress=True)
