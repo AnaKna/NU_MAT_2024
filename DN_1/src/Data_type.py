@@ -1,6 +1,4 @@
 import numpy as np
-from collections import namedtuple
-from QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
 
 
 class SimetricnaTridiagonalna:

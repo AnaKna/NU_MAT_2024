@@ -1,7 +1,9 @@
 from math import hypot
 import numpy as np
+
 from Data_type import Givens
 from Data_type import ZgornjaDvodiagonalna
+
 
 def QR_Decomposition_using_Givens_Rotations(matrix):
 
@@ -59,3 +61,8 @@ def Givens_Rotation(a, b):
     c = a/r
     s = -b/r
     return (c, s)
+
+
+A = [[0,0,0],[0,0,0],[0,0,0]]
+B,C,D = QR_Decomposition_using_Givens_Rotations(A)
+print(B)
