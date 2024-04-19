@@ -1,6 +1,5 @@
 from math import hypot
 import numpy as np
-
 from Data_type import Givens
 from Data_type import ZgornjaDvodiagonalna
 

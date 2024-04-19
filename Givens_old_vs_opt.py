@@ -5,6 +5,12 @@ import os
 import matplotlib.pyplot as plt
 
 
+sys.path.append('c:\\Users\\ERS\\Desktop\\Numericna-MAT-2024\\DN_1\\src')
+sys.path.append('c:\\Users\\ERS\\Desktop\\Numericna-MAT-2024\\DN_1\\src\\Optimization')
+# Now you can import your module
+
+import src
+
 from ..src.Optimization.QR_decomposition_Givens_rotations_opt import QR_Givens_OPT
 from ..src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 from ..src.Random_Matrix import random_symmetric_tridiagonal
