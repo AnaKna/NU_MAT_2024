@@ -1,6 +1,8 @@
 import numpy as np
-from QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
-from QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
+import sys
+sys.path.append('.')
+from DN_1.src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
+from DN_1.src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
 
 
 def Eigenvalues_Eigenvectors_Givens(A, iterations=1000):

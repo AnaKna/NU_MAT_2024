@@ -1,8 +1,10 @@
 import numpy as np
 from tabulate import tabulate
-from QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
-from QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
-from Random_Matrix import random_symmetric_tridiagonal
+import sys
+sys.path.append('.')
+from DN_1.src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
+from DN_1.src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
+from DN_1.src.Random_Matrix import random_symmetric_tridiagonal
 
 
 def Eigenvalues_Eigenvectors_Givens(A, iterations=1000):

@@ -3,11 +3,11 @@ import time
 import sys
 import os
 import matplotlib.pyplot as plt
-
-
-from ..src.Optimization.QR_decomposition_Givens_rotations_opt import QR_Givens_OPT
-from ..src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
-from ..src.Random_Matrix import random_symmetric_tridiagonal
+sys.path.append('.')
+print(sys.path)
+from DN_1.src.QR_decomposition_Givens_rotations_OPT import QR_Decomposition_Givens_OPT
+from DN_1.src.Random_Matrix import random_matrix, random_symmetric_tridiagonal
+from DN_1.src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 
 #from src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 #import matplotlib.pyplot as plt
@@ -43,7 +43,7 @@ for i in range(0,len(X_Givens)-4):
 for i in range(0,len(X_Givens_opt)-4):
     A = random_symmetric_tridiagonal(X_Givens_opt[i])
     start = time.time()
-    (Givens_Q_opt, Givens_R_opt,rotations) = QR_Givens_OPT(A)
+    (Givens_Q_opt, Givens_R_opt,rotations) = QR_Decomposition_Givens_OPT(A)
     end = time.time()
     time_Spent = end-start
     Y_Givens_opt[i] = time_Spent

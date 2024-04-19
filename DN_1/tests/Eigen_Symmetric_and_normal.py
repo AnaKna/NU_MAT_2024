@@ -1,5 +1,7 @@
-from src.Random_Matrix import random_symmetric_tridiagonal
-from src.Random_Matrix import random_matrix
+import sys
+sys.path.append('.')
+from DN_1.src.Random_Matrix import random_symmetric_tridiagonal
+from DN_1.src.Random_Matrix import random_matrix
 import numpy as np
 import pandas as pd
 import time
