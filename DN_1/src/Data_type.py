@@ -4,34 +4,28 @@ import numpy as np
 class SimetricnaTridiagonalna:
     """Simetrična tridiagonalna matrika"""
 
-    def __init__(self, glavna_diagonala, zgornja_diagonala, spodnja_diagonala):
+    def __init__(self, glavna_diagonala, stranska_diagonala):
         """
         glavna_diagonala: Seznam elementov glavne diagonale.
-        zgornja_diagonala: Seznam elementov zgornje diagonale.
-        spodnja_diagonala: Seznam elementov spodnje diagonale.
+        stranska_diagonala: Seznam elementov zgornje in spodnje diagonale.
         """
         
-        if len(zgornja_diagonala) != len(glavna_diagonala) - 1:
-            raise ValueError("Neveljavna dolžina zgornje diagonale.")
-        
-        if len(spodnja_diagonala) != len(glavna_diagonala) - 1 :
-            raise ValueError("Neveljavna dolžina spodnje diagonale.")
+        if len(stranska_diagonala) != len(glavna_diagonala) - 1:
+            raise ValueError("Neveljavna dolžina stranske diagonale.")
         
         self.glavna_diagonala = glavna_diagonala
-        self.zgornja_diagonala = zgornja_diagonala
-        self.spodnja_diagonala = spodnja_diagonala
-
+        self.stranska_diagonala = stranska_diagonala
         self.n = len(self.glavna_diagonala)
         self.matrix = np.zeros((self.n, self.n))
 
         for i in range(self.n):
-            self.matrix[i][i] = glavna_diagonala[i]
+            if i < self.n-1:
+                self.matrix[i][i+1] = self.stranska_diagonala[i] 
+                self.matrix[i+1][i] = self.stranska_diagonala[i]
+                self.matrix[i][i] = glavna_diagonala[i]
+            else:
+                self.matrix[i][i] = glavna_diagonala[i] 
 
-        for i in range(self.n-1):
-            self.matrix[i][i+1] = self.zgornja_diagonala[i]   
-
-        for i in range(self.n-1):
-            self.matrix[i+1][i] = self.spodnja_diagonala[i] 
 
         for i in range(self.n):
                 for j in range(self.n):
@@ -44,28 +38,45 @@ class SimetricnaTridiagonalna:
         """ 
         return str(self.matrix)
     
+
     def __len__(self):
         return self.n
-    
+
+        
+
+    def __setitem__(self, point, value):
+        """
+        Sprememba ne-ničelnega elementa znotraj simetrične tridiagonalne matrike
+        """
+        i, j = point
+
+        if i < 0 or i >= self.n or j < 0 or j >= self.n:
+            raise IndexError("Indeks izven dosega")
+        
+        if i == j:
+            self.glavna_diagonala[i] = value
+            self.matrix[i][i] = value
+
+        if i - j == 1:
+            self.stranska_diagonala[j] = value
+            self.matrix[i][j] = value
+            self.matrix[j][i] = value
+        
+        if i - j == -1:
+            self.stranska_diagonala[i] = value
+            self.matrix[i][j] = value
+            self.matrix[j][i] = value
+        
+        if(np.abs(i - j) > 1):
+            raise IndexError("Indeks izven dosega")
+        
+
+
     def __getitem__(self, index):
         if index < 0 or index >= self.n:
             raise IndexError("Index out of range")
         return self.matrix[index]
 
-    
-    def getindex(self, i, j):
-        """
-        Dostop do elementa matrike MATRIX[i][j]
-        """
-        element = self.matrix[i][j]
-        return element
-
-    def setindex(self, i, j, vrednost):
-        """
-        Sprememba vrednosti elementa MATRIX[i][j]
-        """
-        self.matrix[i][j] = vrednost
-        return self.matrix
     
     def firstindex(self):
         """
@@ -79,12 +90,12 @@ class SimetricnaTridiagonalna:
         """
         return self.matrix[self.n - 1][self.n - 1]
 
-    def multiply(self,matrika_ali_vektor):
-        """
-        Množenje matrike z matriko/vektorjem
-        """
-        mnozenje = np.dot(self.matrix,matrika_ali_vektor)
-        return mnozenje
+    def __mul__(self, other):
+        return self.matrix * other
+    
+    def __matmul__(self, other):
+        result = np.dot(self.matrix, other)
+        return result
 
 
 class ZgornjaDvodiagonalna:
@@ -120,64 +131,22 @@ class ZgornjaDvodiagonalna:
         return str(self.matrika)
     
     def __len__(self):
-        return self.n
+        return len(self.matrika)
     
     def __getitem__(self, index):
-        if index < 0 or index >= self.n:
+        if index < 0 or index >= len(self.matrika):
             raise IndexError("Index out of range")
         return self.matrika[index]
-
-    
-    def getindex(self, i, j):
-        """
-        Dostop do elementa matrike MATRIX[i][j]
-        """
-        element = self.matrika[i][j]
-        return element
-
-    def setindex(self, i, j, vrednost):
-        """
-        Sprememba vrednosti elementa MATRIX[i][j]
-        """
-        self.matrika[i][j] = vrednost
-        return self.matrika
-    
-    def firstindex(self):
-        """
-        Prvi element matrike MATRIX[0][0]
-        """
-        return self.matrika[0][0]
-    
-    def lastindex(self):
-        """
-        Zadnji element matrike MATRIX[n][n]
-        """
-        return self.matrika[self.n - 1][self.n - 1]
-
-    def multiply(self,matrika_ali_vektor):
-        """
-        Množenje matrike z matriko/vektorjem
-        """
-        mnozenje = np.dot(self.matrika,matrika_ali_vektor)
-        return mnozenje
     
 
     def __mul__(self, other):
-        if isinstance(other,int):
-            # Handle multiplication with integers or floats
-            return ZgornjaDvodiagonalna(self.value * other.value)
-        
-        elif isinstance(other, float): 
-            # Handle multiplication with integers or floats
-            return ZgornjaDvodiagonalna(self.value * other.value)
-        
-        elif isinstance(other, ZgornjaDvodiagonalna):
-            # Handle multiplication with another CustomDataType object
-            return ZgornjaDvodiagonalna(self.value * other.value)
-        
-        else:
-            # Raise an exception for unsupported operand types
-            raise TypeError("Multiplication not supported for this operand type")
+        return self.matrika * other
+    
+
+    def __matmul__(self, other):
+        result = np.dot(self.matrika, other)
+        return result
+    
 
 
 class Givens:

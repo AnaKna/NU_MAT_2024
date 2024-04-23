@@ -4,12 +4,11 @@ import sys
 sys.path.append('.')
 from DN_1.src.Data_type import ZgornjaDvodiagonalna
 from DN_1.src.Data_type import Givens
+from DN_1.src.Data_type import SimetricnaTridiagonalna
 
 
 def QR_Decomposition_using_Givens_Rotations(matrix):
 
-    # Zagotovimo, da je matrika oblike np.array()
-    matrix = np.array(matrix)
     (num_rows, num_cols) = np.shape(matrix)
     
 
@@ -18,7 +17,7 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
     Q_givens_rotations = []
     Q_givens_index = []
     # Določimo matriko R kot kopijo osnovne matrike
-    R = matrix
+    R = np.copy(matrix)
 
     # Določimo elemente spodnje trikotne matrike brez diagonale
     (rows, cols) = np.tril_indices(num_rows, -1, num_cols)

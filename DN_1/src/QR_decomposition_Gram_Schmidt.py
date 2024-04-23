@@ -39,3 +39,5 @@ def Gram_Schmidt_QR_decomposition(matrix):
             R[i,j] = a_list[j] @ e_list[i]
 
     return (Q,R)
+
+
