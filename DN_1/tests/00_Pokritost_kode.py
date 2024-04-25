@@ -16,7 +16,7 @@ np.set_printoptions(precision=5, suppress=True)
 # Število iteracj za izračun lastnih vrednsoti in vektorjev
 iterations = 1000
 # Prikaz vmesnih iračunov lastnih vrednosti -> vsakih 10000 korakov
-show = False
+show = True
 
 
 #Testiramo print metodo podatkovnega tipa SimeticnaTridiagonalna

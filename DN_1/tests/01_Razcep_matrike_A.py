@@ -8,7 +8,11 @@ from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schm
 from DN_1.src.Data_type import SimetricnaTridiagonalna
 
 np.set_printoptions(precision=5, suppress=True)
-
+# Prava vrednosti - izračunana vrednost < limita
+# Število iteracj za izračun lastnih vrednsoti in vektorjev
+iterations = 1000
+# Prikaz vmesnih iračunov lastnih vrednosti -> vsakih 10000 korakov
+show = False
 
 glavna_diagonala = [1,1,1]
 stranska_diagonala = [1,1]
@@ -33,7 +37,7 @@ print("Matrika R")
 print(R)
 print("")
 print("A = Q * R")
-print(Q@R)
+print(Q@R.matrika)
 print("")
 print(givens)
 print("")
@@ -81,7 +85,7 @@ print("")
 
 
 
-values, vectors = Eigenvalues_Eigenvectors_Givens(A,60000, show=False)
+values, vectors = Eigenvalues_Eigenvectors_Givens(A, iterations,show)
 print("")
 print("")
 print("Lastne vrednosti in vektorji pridobljeni z Givensovimi rotacijami:")
@@ -107,7 +111,7 @@ for i in range(0,len(A)):
     print("")
 
 
-values, vectors = Eigenvalues_Eigenvectors_Gram_Schmidt(A,60000, show=False)
+values, vectors = Eigenvalues_Eigenvectors_Gram_Schmidt(A,iterations,show)
 print("")
 print("")
 print("Lastne vrednosti in vektorji pridobljeni z Gram-Schmidt metodo:")
