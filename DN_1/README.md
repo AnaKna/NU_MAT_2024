@@ -1,4 +1,4 @@
-# 1. DOMAČA NALOGA: QR razcep simetriˇcne tri-diagonalne matrike
+# 1. DOMAČA NALOGA: QR razcep simetrične tri-diagonalne matrike
 
 # Ana Knafelc, april 2024
 
