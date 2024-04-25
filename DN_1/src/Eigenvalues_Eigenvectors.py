@@ -18,9 +18,9 @@ def Eigenvalues_Eigenvectors_Givens(A, iterations, show):
         Ak = R @ Q
         QQ = QQ@Q
 
-        # Vpogled v spreminjanje lastnih vrednosti po vsaki 10000. iteraciji
+        # Vpogled v spreminjanje lastnih vrednosti po vsakih 500. iteraciji
         if show == True:
-            if k%10000 == 0:
+            if k%500 == 0:
                 print("A",k,"=")
                 print(tabulate(Ak))
                 print("\n")
@@ -44,7 +44,7 @@ def Eigenvalues_Eigenvectors_Gram_Schmidt(A, iterations, show):
         # to see how it looks
         
         if show == True:
-            if k%10000 == 0:
+            if k%500 == 0:
                 print("A",k,"=")
                 print(tabulate(Ak))
                 print("\n")
