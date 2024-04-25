@@ -2,8 +2,8 @@ import numpy as np
 import sys
 from tabulate import tabulate
 sys.path.append('.')
-from DN_1.src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
-from DN_1.src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
+from src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
+from src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
 
 
 

@@ -2,8 +2,8 @@ from math import hypot
 import numpy as np
 import sys
 sys.path.append('.')
-from DN_1.src.Data_type import ZgornjaDvodiagonalna
-from DN_1.src.Data_type import Givens
+from src.Data_type import ZgornjaDvodiagonalna
+from src.Data_type import Givens
 
 
 def QR_Decomposition_using_Givens_Rotations(matrix):

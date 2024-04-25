@@ -1,7 +1,7 @@
 import sys
 sys.path.append('.')
 import numpy as np
-from DN_1.src.Data_type import SimetricnaTridiagonalna
+from src.Data_type import SimetricnaTridiagonalna
 
 def random_symmetric_tridiagonal(n):
     """

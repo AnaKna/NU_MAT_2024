@@ -3,10 +3,10 @@ import pandas as pd
 import time
 import sys
 sys.path.append('.')
-from DN_1.src.Random_Matrix import random_symmetric_tridiagonal
-from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Givens
-from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schmidt
-from DN_1.src.Data_type import SimetricnaTridiagonalna
+from src.Random_Matrix import random_symmetric_tridiagonal
+from src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Givens
+from src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schmidt
+from src.Data_type import SimetricnaTridiagonalna
 
 
 # Limita napake med pravo in izračunano vrednostjo

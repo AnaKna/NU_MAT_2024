@@ -56,7 +56,7 @@ V mapi "**tests**" se nahajajo naslednji testi:
 V skripti **00_Pokritost_kode.py** se izvedejo vse funkcije in njihove metode z namenom testiranja delovanja celotnega programa.\
 Test pokritosti kode izvedemo v terminalu z naslednjimi zaporednimi ukazi:
 ```shell
-python -m coverage run DN_1\tests\00_Pokritost_kode.py report
+python -m coverage run tests\00_Pokritost_kode.py report
 ```
 in
 ```shell

@@ -3,12 +3,12 @@ import pandas as pd
 import time
 import sys
 sys.path.append('.')
-from DN_1.src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
-from DN_1.src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
+from src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
+from src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
 import matplotlib.pyplot as plt
-from DN_1.src.Random_Matrix import random_symmetric_tridiagonal
-from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Givens
-from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schmidt
+from src.Random_Matrix import random_symmetric_tridiagonal
+from src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Givens
+from src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schmidt
 
 np.set_printoptions(precision=5, suppress=True)
 

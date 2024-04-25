@@ -1,11 +1,11 @@
 import numpy as np
 import sys
 sys.path.append('.')
-from DN_1.src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
-from DN_1.src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
-from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Givens
-from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schmidt
-from DN_1.src.Data_type import SimetricnaTridiagonalna
+from src.QR_decomposition_Gram_Schmidt import Gram_Schmidt_QR_decomposition
+from src.QR_decomposition_Givens_rotations import QR_Decomposition_using_Givens_Rotations
+from src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Givens
+from src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schmidt
+from src.Data_type import SimetricnaTridiagonalna
 
 np.set_printoptions(precision=5, suppress=True)
 # Prava vrednosti - izračunana vrednost < limita
