@@ -67,8 +67,12 @@ V skripti **01_Razcep_matrike_A.pyy** se izvede QR razcep matrike A in izračunj
 <br/>
 
 
-V skripti **03_QR_decomposition_test.py** se izvede celovit test delovanja funkcije QR razcepa z uporabo Givensovih rotacij in po Gram-Schmidt metodi. Rezultate primerjamo z QR funkcijo iz knjižnjice numpy.
+V skripti **03_QR_decomposition_test.py** se izvede celovit test delovanja funkcije QR razcepa z uporabo Givensovih rotacij in po Gram-Schmidt metodi. Rezultate primerjamo z QR funkcijo iz knjižnjice numpy. Vhodna matrika za izvedbo QR razcepa je naključna, simterična in tridiagonalna.\
+S spreminjanjem parametra **N** lahko spreminjamo dimanzijo vhodne matrike (NxN).
 
 <br/>
 
-V skripti **04_Eigenvalues_and_vectors_test.pyy** se izvede celovit test delovanja funkcije za izračun lastnih vrednosti in vektorjev z QR razcepom po metodi Givens in Gram-Schmidt metodi. Rezultate primerjamo z funkcijo za izračun lastnih vrednosti in vektorjev iz knjižnjice numpy.
+V skripti **04_Eigenvalues_and_vectors_test.pyy** se izvede celovit test delovanja funkcije za izračun lastnih vrednosti in vektorjev z QR razcepom po metodi Givens in Gram-Schmidt metodi. Rezultate primerjamo z funkcijo za izračun lastnih vrednosti in vektorjev iz knjižnjice numpy. Vhodna matrika za izračun lastnih vrednosti in vektojrev je naključna, simterična in tridiagonalna.\
+S spreminjanjem parametra **N** lahko spreminjamo dimanzijo vhodne matrike (NxN).\
+S spreminjanjem parametra **iterations** lahko spreminjamo število iteracij potrebnih za izračun lastnih vrednosti in vektorjev.\
+S parametrom **show** lahko vklopimo/izklopimo vmesne izpise lastnih vrednosti, po vsakih 500 iteracijah.
