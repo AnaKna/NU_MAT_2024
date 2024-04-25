@@ -16,30 +16,6 @@ def random_symmetric_tridiagonal(n):
     off_diag = np.random.rand(n-1)
     
     # Create the symmetric tridiagonal matrix
-    #matrix = np.diag(main_diag) + np.diag(off_diag, k=1) + np.diag(off_diag, k=-1)
     matrix = SimetricnaTridiagonalna(main_diag,off_diag)
     return matrix
 
-#
-#def random_matrix(N):
-#    return np.random.rand(N, N)
-
-
-
-
-
-
-"""
-matrika = random_symmetric_tridiagonal(5)
-id = np.identity(5)
-matrika_np = np.array(matrika.matrix)
-print(matrika*id)
-print("")
-print(matrika@id)
-print("")
-print("")
-print("")
-print(matrika_np*id)
-print("")
-print(matrika_np@id)
-"""

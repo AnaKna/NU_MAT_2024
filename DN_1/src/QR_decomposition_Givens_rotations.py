@@ -4,13 +4,15 @@ import sys
 sys.path.append('.')
 from DN_1.src.Data_type import ZgornjaDvodiagonalna
 from DN_1.src.Data_type import Givens
-from DN_1.src.Data_type import SimetricnaTridiagonalna
 
 
 def QR_Decomposition_using_Givens_Rotations(matrix):
 
     (num_rows, num_cols) = np.shape(matrix)
-    
+
+    if num_rows != num_cols:
+            raise ValueError("Matrika mora biti velikosti NxN.")
+        
 
     # Določimo matriko Q kot enotsko matriko -> R = Q * G.T = G.T
     Q = np.identity(num_rows)
@@ -19,12 +21,13 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
     # Določimo matriko R kot kopijo osnovne matrike
     R = np.copy(matrix)
 
-    # Določimo elemente spodnje trikotne matrike brez diagonale
+    # Določimo elemente spodnje trikotne matrike brez diagonale, kjer bomo izvajaji Givensove rotacije
     (rows, cols) = np.tril_indices(num_rows, -1, num_cols)
 
     for (row, col) in zip(rows, cols):
         # Givensove rotacije izvedemo samo za ne-ničelne elemnte
         if R[row, col] != 0:
+            # Izračun vrednsoti cos in sin
             (c, s) = Givens_Rotation(R[col, col], R[row, col])
             rotation = [c, s]
             index = [row,col]
@@ -38,8 +41,8 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
             G[row][row] = c
             
             # Elementom na sekundarni diagonali dodamo vrednost sin oz. -sin
-            G[row, col] = s
-            G[col, row] = -s
+            G[row, col] = -s
+            G[col, row] = s
 
             # Matrika Q_T = Gn * ... * G3 * G2 * G1 
             # Matrika Q = Gn_T* ... + G3_T * G2_T * G1_T 
@@ -49,7 +52,9 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
             # Matrika R = Q_T * osnovna matrika
             R = np.dot(Q.T, matrix)
 
+    # Matriko R zapišemo kot tip "ZgornjaDvodiagonalna"
     R = ZgornjaDvodiagonalna(R)
+    # Matriko Q_givens zapišemo kot tip "Givens", ki hrani rotacije in indekse elementov na katere smo vplivali z Givensovimi rotacijami
     Q_givens = Givens(Q_givens_rotations,Q_givens_index)
     return (Q, R, Q_givens)
 
@@ -59,5 +64,7 @@ def QR_Decomposition_using_Givens_Rotations(matrix):
 def Givens_Rotation(a, b):
     r = hypot(a, b)
     c = a/r
-    s = -b/r
+    s = b/r
     return (c, s)
+
+

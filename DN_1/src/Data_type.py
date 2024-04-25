@@ -8,8 +8,7 @@ class SimetricnaTridiagonalna:
         """
         glavna_diagonala: Seznam elementov glavne diagonale.
         stranska_diagonala: Seznam elementov zgornje in spodnje diagonale.
-        """
-        
+        """        
         if len(stranska_diagonala) != len(glavna_diagonala) - 1:
             raise ValueError("Neveljavna dolžina stranske diagonale.")
         
@@ -46,7 +45,8 @@ class SimetricnaTridiagonalna:
 
     def __setitem__(self, point, value):
         """
-        Sprememba ne-ničelnega elementa znotraj simetrične tridiagonalne matrike
+        Sprememba ne-ničelnega elementa znotraj simetrične tridiagonalne matrike.
+        Metoda ohranja simetričnost matrike.
         """
         i, j = point
 
@@ -74,7 +74,7 @@ class SimetricnaTridiagonalna:
 
     def __getitem__(self, index):
         if index < 0 or index >= self.n:
-            raise IndexError("Index out of range")
+            raise IndexError("Indeks izven dosega")
         return self.matrix[index]
 
     
@@ -150,7 +150,10 @@ class ZgornjaDvodiagonalna:
 
 
 class Givens:
-    """Zgornje dvodiagonalna matrika"""
+    """
+    Vsebuje ROTACIJE in INDEKSE VRSTIC,
+    proizvedene pri izvajanju Givensovih rotacij.
+    """
 
     def __init__(self, rotacije, indeksi_vrstic):
         self.rotacije = rotacije

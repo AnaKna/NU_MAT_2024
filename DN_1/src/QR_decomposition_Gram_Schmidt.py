@@ -1,5 +1,8 @@
 import numpy as np
 
+
+# Dodatna implementacija metode za QR razcep - za kasnejšo primerjavo vrednosti
+
 def Gram_Schmidt_QR_decomposition(matrix):
     # Pogoj za nadaljevanje: Matrika mora biti velikosti NxN
     if len(matrix[0]) != len(matrix[0]):

@@ -12,6 +12,13 @@ from DN_1.src.Eigenvalues_Eigenvectors import Eigenvalues_Eigenvectors_Gram_Schm
 
 np.set_printoptions(precision=5, suppress=True)
 
+
+# Število iteracj za izračun lastnih vrednsoti in vektorjev
+iterations = 1000
+# Prikaz vmesnih iračunov lastnih vrednosti -> vsakih 10000 korakov
+show = False
+
+
 #Testiramo print metodo podatkovnega tipa SimeticnaTridiagonalna
 test = random_symmetric_tridiagonal(3)
 print(test)
@@ -141,7 +148,7 @@ Y_np = [None]*len(X)
 for i in range(0,len(X)-5):
     A = random_symmetric_tridiagonal(X[i])
     start = time.time()
-    (Gram_Sc_val, Gram_Sc_vec) = Eigenvalues_Eigenvectors_Gram_Schmidt(A)
+    (Gram_Sc_val, Gram_Sc_vec) = Eigenvalues_Eigenvectors_Gram_Schmidt(A, iterations,show)
     end = time.time()
     time_Spent = end-start
     Y[i] = time_Spent
@@ -151,7 +158,7 @@ for i in range(0,len(X)-5):
 for i in range(0,len(X_Givens)-5):
     A = random_symmetric_tridiagonal(X_Givens[i])
     start = time.time()
-    (Givens_val, Givens_vec) = Eigenvalues_Eigenvectors_Givens(A)
+    (Givens_val, Givens_vec) = Eigenvalues_Eigenvectors_Givens(A, iterations,show)
     end = time.time()
     time_Spent = end-start
     Y_Givens[i] = time_Spent
@@ -185,13 +192,24 @@ plt.ylabel('Čas računanja lastnih vrednosti in vektorjev')
 
 axis[0, 0].plot(X[0:len(Y)], Y, color='royalblue') 
 axis[0, 0].set_title("Grahmova metoda računanja") 
+axis[0, 0].set_xlabel('Velikost matrike AxA')  # X label
+axis[0, 0].set_ylabel('Čas izvajanja funkcije')  # Y label
+
 axis[0, 1].plot(X_Givens[0:len(Y_Givens)], Y_Givens, color='green') 
-axis[0, 1].set_title("Givensova metoda računanja") 
+axis[0, 1].set_title("Givensova metoda računanja")
+axis[0, 1].set_xlabel('Velikost matrike AxA')  # X label
+axis[0, 1].set_ylabel('Čas izvajanja funkcije')  # Y label
+
 axis[1, 0].plot(X_np, Y_np, color='orange') 
 axis[1, 0].set_title("Numpy funkcije za računanje lastnih vrednosti in vektorjev") 
+axis[1, 0].set_xlabel('Velikost matrike AxA')  # X label
+axis[1, 0].set_ylabel('Čas izvajanja funkcije')  # Y label
+
 axis[1, 1].plot(X, Y, label = "Grahm", color='royalblue')
 axis[1, 1].plot(X_Givens, Y_Givens, label = "Givens", color='green') 
-axis[1, 1].plot(X_np, Y_np, label = "Numpy", color='orange') 
+axis[1, 1].plot(X_np, Y_np, label = "Numpy", color='orange')
+axis[1, 1].set_xlabel('Velikost matrike AxA')  # X label
+axis[1, 1].set_ylabel('Čas izvajanja funkcije')  # Y label
 
 # Displaying the graph
 plt.show()
