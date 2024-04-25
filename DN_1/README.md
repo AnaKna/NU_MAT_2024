@@ -2,7 +2,11 @@
 
 # Ana Knafelc, april 2024
 
-## Navodila
+## Opis
+
+V projektu je podana implementacija različnih metod QR razcepa s programskim jezikom *python*.\
+Izvedena je bila implementacija QR razcepa z Givensovimi rotacijami in po metodi Gram-Schmith.\
+Iz tega je izpeljan tudi izračun lastnih vrednosti in vektorjev po metodah QR razcepa.
 
 <br/>
 
