@@ -19,7 +19,7 @@ def f_x3_15(x):
 
 
 
-#--------------------------------TEST GAUSS-LEGENDOVEGA ALGORITMA----------------------------------------------------------
+#--------------------------------TEST GAUSS-LEGENDREOVEGA ALGORITMA----------------------------------------------------------
 
 class TestGaussLegendre_1(unittest.TestCase):
 
