@@ -8,7 +8,7 @@ import math
 # Definirajmo Legendre-jeve kolokacijske točke - ničle Legendre-jevega polinoma druge stopnje
 # x1 = squrt(1/3) in x2 = squrt(-1/3)
 
-# Izralun uteži w1 in w2
+# Izračun uteži w1 in w2
 # w1 = 2/(1-x1^2)*(P2'(x1)^2)
 # Odvod Legendre-jevega polinoma druge stopnje
 # P2'(x) = 3x
