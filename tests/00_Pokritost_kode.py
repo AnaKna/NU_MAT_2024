@@ -1,17 +1,27 @@
-from sympy import symbols, integrate
+from sympy import symbols, integrate, sin
 from scipy import integrate
 import sympy as sy 
 import sys
+import math
 
 sys.path.append('.')
 from src.Gauss_Legendre import Gauss_Legendre
-from src.Trapez_integration import trapez_int, trapez_int_sin, sin_div_x
+from src.Trapez_integration import trapez_int, trapez_int_sin
 
 
 
 # The function to be integrated: x**4 + 3
 def f_x4_3(x):
     return x**4 + 3
+
+
+# Definicija funkcije: sin(x)/x
+def sin_div_x(x):
+  if(x == 0):     # sin(0)/0 je nedefinirano -> limita je 1
+    if math.isnan(sin(x) / x):
+        return 1.0
+  else:
+    return sin(x) / x
 
 
 
@@ -120,8 +130,6 @@ print("Funkcija: " + str(funkcija))
 print("Interval: [" + str(a) + "," + str(b) + "]")
 print("Prava vrednost: " + str(true_result))
 print("Izračunana vrednsoti: " + str(približek))
-# Absolutna napaka
 print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
-# Relativna napaka
 print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
 print("CALCULATED ERROR: |" + str(float(error)) + "|")

@@ -1,13 +1,11 @@
 import unittest
-import numpy as np
-from sympy import Symbol, sympify  # Assuming you use SymPy for symbolic expressions
-import sympy as sy 
+from sympy import Symbol, sympify, sin  # Assuming you use SymPy for symbolic expressions
 import sys
+import math
 
 sys.path.append('.')
 from src.Gauss_Legendre import Gauss_Legendre
-from src.Trapez_integration import trapez_int, trapez_int_sin, sin_div_x
-
+from src.Trapez_integration import trapez_int, trapez_int_sin
 
 # The function to be integrated: x**4 + 3
 def f_x4_3(x):
@@ -18,9 +16,18 @@ def f_x3_15(x):
     return x**3 + 15
 
 
+# Definicija funkcije: sin(x)/x
+def sin_div_x(x):
+  if(x == 0):     # sin(0)/0 je nedefinirano -> limita je 1
+    if math.isnan(sin(x) / x):
+        return 1.0
+  else:
+    return sin(x) / x
 
 #--------------------------------TEST GAUSS-LEGENDREOVEGA ALGORITMA----------------------------------------------------------
 
+# Če je stopnja polinoma <= 2*N-1 je aproksimacija integrala točka in je Error = 0
+# 2*N-1 = 2*2 - 1 = 3 , kar za funkcijo x^4+3 ne velja
 class TestGaussLegendre_1(unittest.TestCase):
 
     def test_polynomial_function_1(self):
@@ -35,6 +42,8 @@ class TestGaussLegendre_1(unittest.TestCase):
         self.assertAlmostEqual(integral + error , expected_integral, places=5)
 
 
+# Če je stopnja polinoma <= 2*N-1 je aproksimacija integrala točka in je Error = 0
+# 2*N-1 = 2*2 - 1 = 3, kar za funkcijo x**3 + 15 velja
 class TestGaussLegendre_2(unittest.TestCase):
 
     def test_polynomial_function_2(self):

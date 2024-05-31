@@ -13,11 +13,11 @@ V projektu je podana implementacija funkcije za izračun integrala z Gauss-Legen
 
 V mapi "**src**" se nahajajo glavne funkcije za izračun:
 - integrala z Gauss-Legendreovim integracijskim pravilom,
-- integrala s sestavljenim praivlom 
+- integrala s sestavljenim pravilom  
 
 <br/>
 
-V skripti **Gauss_Legendre.py** se nahaj funkcija *Gauss_Legendre*, ki izračuna integrala funkcije z Gauss-Legendreovim integracijskim pravilom.
+V skripti **Gauss_Legendre.py** je definirana funkcija *Gauss_Legendre*, ki izračuna integral funkcije z Gauss-Legendreovim integracijskim pravilom.
 Funkcija je bila implementirana na osnovi izpeljave integracijskega pravila za dve točki.
 
 Primer uporabe:
@@ -30,7 +30,7 @@ Primer uporabe:
 
 <br/>
 
-V skripti **Trapez_integration.py** se nahaj funkcija *trapez_int*, ki izračuna integral funkcije s pomočjo sestavljenega pravila (angl. Trapezoidal rule).
+V skripti **Trapez_integration.py** je funkcija *trapez_int*, ki izračuna integral funkcije s pomočjo sestavljenega pravila (angl. Trapezoidal rule).
 Funkcija je namenjena integraciji polinomov. Funkcija kot izhod vrne dve vrednosti: približek izračuna integrala in približek napake algoritma.
 
 Primer uporabe:
@@ -47,7 +47,7 @@ Primer uporabe:
 
 <br/>
 
-V skripti **Trapez_integration.py** se nahaj funkcija *trapez_int_sin*, ki izračuna integral funkcije s pomočjo sestavljenega pravila (angl. Trapezoidal rule).
+V skripti **Trapez_integration.py** se nahaja funkcija *trapez_int_sin*, ki izračuna integral funkcije s pomočjo sestavljenega pravila (angl. Trapezoidal rule).
 Funkcija je namenjena integraciji funkcije sin(x)/x. Funkcija kot izhod vrne dve vrednosti: približek izračuna integrala in približek napake algoritma.
 
 Primer uporabe:
