@@ -21,6 +21,7 @@ V skripti **Gauss_Legendre.py** sta definirani funkciji *Gauss_Legendre* in *Gau
 Funkciji sta implementirani na osnovi izpeljave integracijskega pravila za dve točki.
 
 Primer uporabe:
+
     x = symbols('x')  ->  Definicija spremenljivke
     funkcija = x**4+3  ->  Definicija funkcije
     stopnja_polinoma = 4
@@ -34,6 +35,7 @@ Skripta **Gauss_Legendre_Composition.py** vsebuje funkciji *GL_composite_int* in
 Funkciji sta implementirani implementiranu na osnovi izpeljave integracijskega pravila za dve točki.
 
 Primer uporabe:
+
     x = symbols('x')  ->  Definicija spremenljivke
     funkcija = sin(x)/x  # Define the function
     stopnja_polinoma = 0
