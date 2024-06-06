@@ -7,6 +7,7 @@ import math
 sys.path.append('.')
 from src.Gauss_Legendre import Gauss_Legendre
 from src.Trapez_integration import trapez_int, trapez_int_sin
+from src.Gauss_Legendre_Composition import GL_composite_int
 
 
 
@@ -133,3 +134,61 @@ print("Izračunana vrednsoti: " + str(približek))
 print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
 print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
 print("CALCULATED ERROR: |" + str(float(error)) + "|")
+
+
+
+
+
+
+
+#--------------------------------GAUSS-LEGENDEOJEVO SESTAVLJENO PRAVILO f(x) = x^2 + 3----------------------------------------------------------
+
+x = symbols('x')  # Define the variable
+funkcija = x**4 + 3  # Define the function
+stopnja = 4
+a = 1
+b = 4
+N = 10
+približek, error_est = GL_composite_int(funkcija,stopnja,x,a,b,N)
+true_result = sy.integrate(funkcija, (x, a, b))
+true_result = float(true_result)
+
+
+print("")
+print("")
+print("Gauss-Legendreovo SESTAVLJENO PRAVILO")
+print("Funkcija: " + str(funkcija))
+print("Interval: [" + str(a) + "," + str(b) + "]")
+print("Prava vrednost: " + str(true_result))
+print("Izračunana vrednsoti: " + str(približek))
+print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
+print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
+print("CALCULATED ERROR: <= |" + str(float(error_est)) + "|")
+
+
+
+
+#--------------------------------GAUSS-LEGENDEOJEVO SESTAVLJENO PRAVILO f(x) = sin(x)/x ----------------------------------------------------------
+
+x = symbols('x')  # Define the variable
+funkcija = sin(x)/x  # Define the function
+stopnja = 0
+a = 0
+b = 5
+# Za natančnost na 10 decimalk -> N = 175
+N = 175
+približek, error_est = GL_composite_int(funkcija,stopnja,x,a,b,N)
+true_result = sy.integrate(funkcija, (x, a, b))
+true_result = float(true_result)
+
+
+print("")
+print("")
+print("Gauss-Legendreovo SESTAVLJENO PRAVILO")
+print("Funkcija: " + str(funkcija))
+print("Interval: [" + str(a) + "," + str(b) + "]")
+print("Prava vrednost: " + str(true_result))
+print("Izračunana vrednsoti: " + str(približek))
+print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
+print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
+print("CALCULATED ERROR: <= |" + str(float(error_est)) + "|")

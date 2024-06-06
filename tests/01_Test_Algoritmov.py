@@ -5,6 +5,7 @@ import math
 
 sys.path.append('.')
 from src.Gauss_Legendre import Gauss_Legendre
+from src.Gauss_Legendre_Composition import GL_composite_int
 from src.Trapez_integration import trapez_int, trapez_int_sin
 
 # The function to be integrated: x**4 + 3
@@ -66,7 +67,7 @@ class TestGaussLegendre_2(unittest.TestCase):
 
 class Test_Trapezoidal_polynomial_1(unittest.TestCase):
 
-    def test_polynomial_function_3(self):
+    def test_polynomial_function_4(self):
         """Tests Trapezoid rule with a polynomial function."""
         # f(x) = x**4 + 3
         N = 13000
@@ -79,7 +80,7 @@ class Test_Trapezoidal_polynomial_1(unittest.TestCase):
 
 class Test_Trapezoidal_polynomial_2(unittest.TestCase):
 
-    def test_polynomial_function_3(self):
+    def test_polynomial_function_5(self):
         """Tests Trapezoid rule with a polynomial function."""
         # f = x**3 + 15
         N = 10000
@@ -96,7 +97,7 @@ class Test_Trapezoidal_polynomial_2(unittest.TestCase):
 
 class Test_Trapezoidal_polynomial_3(unittest.TestCase):
 
-    def test_polynomial_function_3(self):
+    def test_polynomial_function_6(self):
         """Tests Trapezoid rule with a polynomial function."""
         # f = sin(x)/x
         N = 10000
@@ -106,6 +107,43 @@ class Test_Trapezoidal_polynomial_3(unittest.TestCase):
 
         integral, error = trapez_int_sin(sin_div_x,a,b,N)
         self.assertAlmostEqual(integral, expected_integral, places=5)
+
+
+
+
+
+
+#--------------------------------TEST GAUSS-LEGENDREOVEGA ALGORITMA - SESTAVLJENO PRAVILO----------------------------------------------------------
+
+class TestGaussLegendre_Composition_1(unittest.TestCase):
+
+    def test_Gauss_Legendre_comp_1(self):
+        """Tests Gauss-Legendre composition rule"""
+        x = Symbol('x')
+        f = sympify("x**4+3")
+        stopnja = 4
+        a = 1
+        b = 4
+        N = 100
+        expected_integral = 213.6  # Solution for the definite integral
+        integral, error1 = GL_composite_int(f, stopnja, x, a, b, N)
+        self.assertAlmostEqual(integral , expected_integral, places=5)
+
+
+
+class TestGaussLegendre_Composition_2(unittest.TestCase):
+
+    def test_Gauss_Legendre_comp_2(self):
+        """Tests Gauss-Legendre with a polynomial function."""
+        x = Symbol('x')
+        f = sin(x)/x
+        stopnja = 0
+        a = 0
+        b = 5
+        N = 100
+        expected_integral = 1.549931245  # Analytical solution for the definite integral
+        integral, error = GL_composite_int(f, stopnja, x, a, b, N)
+        self.assertAlmostEqual(integral , expected_integral, places=5)
 
 
 

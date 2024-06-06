@@ -50,7 +50,7 @@ def Gauss_Legendre(funkcija,stopnja_polinoma,variable,A,B):
 
     število_odvodov = 2*N-1
     # Če je stopnja polinoma <= 2*N-1 je aproksimacija integrala točka in je Error = 0
-    if(stopnja_polinoma <= število_odvodov):
+    if(stopnja_polinoma <= število_odvodov & stopnja_polinoma != 0):
         Error = 0
     else:
         # Izračun 2N-tega odvoda integracijske funkcije
@@ -61,9 +61,12 @@ def Gauss_Legendre(funkcija,stopnja_polinoma,variable,A,B):
 
         # Izračun vrednosti 2N-tega odvoda funkcije
         vrednosti = []
-        M = (B-A)*500
+        M = int(np.ceil(((B-A)/0.01)))
         for i in range(0,M+1):
-            vrednosti.append(abs(odvod.subs({variable:(A + (B-A)*i/M)})))
+            if math.isnan(odvod.subs({variable:(A + (B-A)*i/M)})):
+                vrednosti.append(abs(odvod.subs({variable:(A + (B-A)*i/M + 0.0001)})))
+            else:
+                vrednosti.append(abs(odvod.subs({variable:(A + (B-A)*i/M)})))
         
         # Določimo |max| odvoda
         max_value = np.max(vrednosti)
