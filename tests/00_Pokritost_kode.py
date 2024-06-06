@@ -1,0 +1,194 @@
+from sympy import symbols, integrate, sin
+from scipy import integrate
+import sympy as sy 
+import sys
+import math
+
+sys.path.append('.')
+from src.Gauss_Legendre import Gauss_Legendre
+from src.Trapez_integration import trapez_int, trapez_int_sin
+from src.Gauss_Legendre_Composition import GL_composite_int
+
+
+
+# The function to be integrated: x**4 + 3
+def f_x4_3(x):
+    return x**4 + 3
+
+
+# Definicija funkcije: sin(x)/x
+def sin_div_x(x):
+  if(x == 0):     # sin(0)/0 je nedefinirano -> limita je 1
+    if math.isnan(sin(x) / x):
+        return 1.0
+  else:
+    return sin(x) / x
+
+
+
+NaN = sin_div_x(0)
+print(NaN)
+
+
+
+
+#--------------------------------SESTAVLJENO PRAVILO f(x) = sin(x) / x----------------------------------------------------------
+
+
+#N = 186339 -> za natančnost na 10 decimalk
+N = 100
+sin_integration, sin_error = trapez_int_sin(sin_div_x,0,5,N)
+true_result = integrate.quad(sin_div_x, 0, 5)[0]
+
+print("")
+print("Sestavljeno pravilo")
+print("Funkcija: sin(x)/x")
+print("Interval: [0,5]")
+print("N = " + str(N))
+print("Prava vredsnot: " + str(true_result))
+print("Izračunana vrednsoti: " + str(sin_integration))
+print("ABSOLUTE ERROR: " + str(abs(sin_integration - true_result)))
+print("RELATIVE ERROR: " + str(abs(sin_integration - true_result)/true_result))
+print("ESTIMATED ERROR: error <= |" + str(sin_error) + "|")
+
+
+
+#--------------------------------SESTAVLJENO PRAVILO f(x) = x^4 + 3----------------------------------------------------------
+
+
+N = 100
+integration,error = trapez_int(f_x4_3,1,4,N)
+result = integrate.quad(f_x4_3, 1, 4)[0]
+
+print("")
+print("")
+print("Sestavljeno pravilo")
+print("Funkcija: x**4 + 3" )
+print("Interval: [1,4]")
+print("N = " + str(N))
+print("Prava vredsnot: " + str(result))
+print("Izračunana vrednsoti: " + str(integration))
+print("ABSOLUTE ERROR: " + str(abs(integration - result)))
+print("RELATIVE ERROR: " + str(abs(integration - result)/result))
+print("ESTIMATED ERROR: error <= |" + str(error) + "|")
+
+
+
+
+
+#--------------------------------GAUSS-LEGENDOREOVO PRAVILO f(x) = x^4 + 3----------------------------------------------------------
+# stopnja polinoma <= 2*število_točk_za_izračun_integrala - 1
+# 4 <= 2*2 - 1
+# 4 <= 3 -> FALSE
+
+x = symbols('x')  # Define the variable
+funkcija = x**4+3  # Define the function
+stopnja = 4
+a = 1
+b = 4
+približek, error = Gauss_Legendre(funkcija,stopnja,x,a,b)
+true_result = sy.integrate(funkcija, (x, a, b))
+true_result = float(true_result)
+
+
+print("")
+print("")
+print("Gauss-Legendreovo integracijsko pravilo")
+print("Funkcija: " + str(funkcija))
+print("Interval: [1,4]")
+print("Prava vrednost: " + str(true_result))
+print("Izračunana vrednsoti: " + str(približek))
+# Absolutna napaka
+print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
+# Relativna napaka
+print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
+print("CALCULATED ERROR: |" + str(float(error)) + "|")
+
+
+
+
+
+
+#--------------------------------GAUSS-LEGENDEOROVO PRAVILO f(x) = x^2 + 3----------------------------------------------------------
+# stopnja polinoma <= 2*število_točk_za_izračun_integrala - 1
+# 5 <= 2*2 - 1
+# 2 <= 3 -> TRUE
+
+x = symbols('x')  # Define the variable
+funkcija = x**2 + 3  # Define the function
+stopnja = 2
+a = 1
+b = 4
+približek, error = Gauss_Legendre(funkcija,stopnja,x,a,b)
+true_result = sy.integrate(funkcija, (x, a, b))
+true_result = float(true_result)
+
+
+print("")
+print("")
+print("Gauss-Legendreovo integracijsko pravilo")
+print("Funkcija: " + str(funkcija))
+print("Interval: [" + str(a) + "," + str(b) + "]")
+print("Prava vrednost: " + str(true_result))
+print("Izračunana vrednsoti: " + str(približek))
+print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
+print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
+print("CALCULATED ERROR: |" + str(float(error)) + "|")
+
+
+
+
+
+
+
+#--------------------------------GAUSS-LEGENDEOJEVO SESTAVLJENO PRAVILO f(x) = x^2 + 3----------------------------------------------------------
+
+x = symbols('x')  # Define the variable
+funkcija = x**4 + 3  # Define the function
+stopnja = 4
+a = 1
+b = 4
+N = 10
+približek, error_est = GL_composite_int(funkcija,stopnja,x,a,b,N)
+true_result = sy.integrate(funkcija, (x, a, b))
+true_result = float(true_result)
+
+
+print("")
+print("")
+print("Gauss-Legendreovo SESTAVLJENO PRAVILO")
+print("Funkcija: " + str(funkcija))
+print("Interval: [" + str(a) + "," + str(b) + "]")
+print("Prava vrednost: " + str(true_result))
+print("Izračunana vrednsoti: " + str(približek))
+print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
+print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
+print("CALCULATED ERROR: <= |" + str(float(error_est)) + "|")
+
+
+
+
+#--------------------------------GAUSS-LEGENDEOJEVO SESTAVLJENO PRAVILO f(x) = sin(x)/x ----------------------------------------------------------
+
+x = symbols('x')  # Define the variable
+funkcija = sin(x)/x  # Define the function
+stopnja = 0
+a = 0
+b = 5
+# Za natančnost na 10 decimalk -> N = 175
+N = 175
+približek, error_est = GL_composite_int(funkcija,stopnja,x,a,b,N)
+true_result = sy.integrate(funkcija, (x, a, b))
+true_result = float(true_result)
+
+
+print("")
+print("")
+print("Gauss-Legendreovo SESTAVLJENO PRAVILO")
+print("Funkcija: " + str(funkcija))
+print("Interval: [" + str(a) + "," + str(b) + "]")
+print("Prava vrednost: " + str(true_result))
+print("Izračunana vrednsoti: " + str(približek))
+print("ABSOLUTE ERROR: " + str(abs(približek - true_result)))
+print("RELATIVE ERROR: " + str(abs(približek - true_result)/true_result))
+print("CALCULATED ERROR: <= |" + str(float(error_est)) + "|")
