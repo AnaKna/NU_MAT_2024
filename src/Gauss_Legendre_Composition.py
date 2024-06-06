@@ -22,7 +22,6 @@ def GL_composite_int(funkcija,stopnja,x,a,b,N):
     # Definirajmo velikost pod-območja
     h = (b-a)/N
     integral = 0
-    error = 0
     
     # Izračun po SESTAVLJENEM PRAVILU
     for i in range(0,N):
@@ -33,6 +32,17 @@ def GL_composite_int(funkcija,stopnja,x,a,b,N):
 
     
     P = 2 # Stopnja Legendre-jevega polinoma / število točk, ki jih uporabimo za aproksimacijo integrala funkcije
+    
+    error_est = GL_composite_int_Error(funkcija, P, x, a, b, N)
+    
+    return integral, error_est
+
+
+
+
+def GL_composite_int_Error(funkcija,stopnja_metode,x,a,b,N):
+
+    P = stopnja_metode
     # Izračun 2N-tega odvoda integracijske funkcije
     odvod = funkcija.diff(x)
     for i in range(0,2*P-1):
@@ -54,8 +64,6 @@ def GL_composite_int(funkcija,stopnja,x,a,b,N):
     # Oceno napake pri izračunu integrala po sestavljenem pravilu s pomočjo Gauss-Legendrejeve mdetode izračunamo po spodnji enačbi:
     error_est = (b-a)**(2*P + 1) * (math.factorial(P))**(4)
     error_est = error_est * max_value
-    error_est = error_est / (( N**(2*P)) * ( (2*P +1) * ((math.factorial(2*P))**3))) 
-    
-    return integral, error_est
+    error_est = error_est / (( N**(2*P)) * ( (2*P +1) * ((math.factorial(2*P))**3)))
 
-
+    return error_est

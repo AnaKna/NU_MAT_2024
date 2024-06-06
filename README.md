@@ -17,8 +17,8 @@ V mapi "**src**" se nahajajo glavne funkcije za izračun:
 
 <br/>
 
-V skripti **Gauss_Legendre.py** je definirana funkcija *Gauss_Legendre*, ki izračuna integral funkcije z Gauss-Legendreovim integracijskim pravilom.
-Funkcija je bila implementirana na osnovi izpeljave integracijskega pravila za dve točki.
+V skripti **Gauss_Legendre.py** sta definirani funkciji *Gauss_Legendre* in *Gauss_Legendre_Error*, ki izračunata integral funkcije z Gauss-Legendreovim integracijskim pravilom in predvideno napako algoritma.
+Funkciji sta implementirani na osnovi izpeljave integracijskega pravila za dve točki.
 
 Primer uporabe:
     x = symbols('x')  ->  Definicija spremenljivke
@@ -30,8 +30,8 @@ Primer uporabe:
 
 <br/>
 
-Skripta **Gauss_Legendre_Composition.py** vsebuje funkcijo *GL_composite_int*, ki izračuna aproksimacijo integrala funkcije preko sestavljenega pravila s pomočjo Gauss-Legendreove metode.
-Funkcija je bila implementirana na osnovi izpeljave integracijskega pravila za dve točki.
+Skripta **Gauss_Legendre_Composition.py** vsebuje funkciji *GL_composite_int* in *GL_composite_int_Error*, ki izračunata aproksimacijo integrala funkcije preko sestavljenega pravila s pomočjo Gauss-Legendreove metode in predvideno napako.
+Funkciji sta implementirani implementiranu na osnovi izpeljave integracijskega pravila za dve točki.
 
 Primer uporabe:
     x = symbols('x')  ->  Definicija spremenljivke
@@ -94,7 +94,10 @@ V mapi "**tests**" se nahajajo naslednji testi:
 - Test sestavljenega algoritma z Gauss-Legendrejevo metodo za polinom,
 - Test sestavljenega algoritma z Gauss-Legendrejevo metodo za funkcijo sin(x)/x
 
+<br/>
 Vsi testi so uspešni z natančnostjo na 5 decimalk.
+<br/>
+
 <br/>
 
 V skripti **00_Pokritost_kode.py** se izvedejo vse funkcije in njihove metode z namenom testiranja delovanja celotnega programa.\

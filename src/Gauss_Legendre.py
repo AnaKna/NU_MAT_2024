@@ -46,7 +46,17 @@ def Gauss_Legendre(funkcija,stopnja_polinoma,variable,A,B):
     # ( w1*f(x1) + w2*f(x2) ) * (B-A) / 2 
     integral = ((w1 * fun_t1 + w2 * fun_t2))*(B-A)/2
 
+    Error = Gauss_Legendre_Error(funkcija,N,stopnja_polinoma,variable,A,B)
 
+    return integral, Error
+
+
+
+
+
+def Gauss_Legendre_Error(funkcija, stopnja_metode, stopnja_polinoma, variable,A,B):
+
+    N = stopnja_metode     # Stopnja Legendre-jevega polinoma / število točk, ki jih uporabimo za aproksimacijo integrala funkcije
 
     število_odvodov = 2*N-1
     # Če je stopnja polinoma <= 2*N-1 je aproksimacija integrala točka in je Error = 0
@@ -74,5 +84,5 @@ def Gauss_Legendre(funkcija,stopnja_polinoma,variable,A,B):
         Error = (B-A)**(2*N + 1) * math.factorial(N)**(4)
         Error = Error * max_value
         Error = Error / ((2*N +1) * (math.factorial(2*N)**3))   
-
-    return integral, Error
+    
+    return Error
