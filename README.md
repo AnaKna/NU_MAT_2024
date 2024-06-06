@@ -97,7 +97,8 @@ V mapi "**tests**" se nahajajo naslednji testi:
 <br/>
 Vsi testi so uspešni z natančnostjo na 5 decimalk.
 <br/>
-
+<br/>
+<br/>
 <br/>
 
 V skripti **00_Pokritost_kode.py** se izvedejo vse funkcije in njihove metode z namenom testiranja delovanja celotnega programa.\
