@@ -110,6 +110,9 @@ in
 ```shell
 coverage report -m
 ```
+<br/>
+<br/>
+<br/>
 
 Pokritost kode je 100%.
 <br/>
