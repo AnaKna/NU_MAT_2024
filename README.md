@@ -52,7 +52,7 @@ Funkcija je namenjena integraciji polinomov. Funkcija kot izhod vrne dve vrednos
 
 Primer uporabe:
 
-    Definicija funkcije
+    # Definicija funkcije
     def f_x4_3(x):
         return x**4 + 3
 
@@ -69,7 +69,7 @@ Funkcija je namenjena integraciji funkcije sin(x)/x. Funkcija kot izhod vrne dve
 
 Primer uporabe:
 
-    Definicija funkcije sin(x)/x
+    # Definicija funkcije sin(x)/x
     def sin_div_x(x):
     if(x == 0):     
         if math.isnan(sin(x) / x):
